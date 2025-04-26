@@ -22,8 +22,8 @@ model User {
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
   foundItems FoundItem[] // One-to-Many with FoundItem
-  claims     Claim[]     // One-to-Many with Claim
-  profile    Profile?    // One-to-One with Profile
+  claims     Claim[] // One-to-Many with Claim
+  profile    Profile? // One-to-One with Profile
 
   @@map("users")
 }
@@ -39,17 +39,17 @@ model FoundItemCategory {
 }
 
 model FoundItem {
-  id              String            @id @default(uuid())
-  userId          String
-  categoryId      String
-  foundItemName   String
-  description     String
-  location        String
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  user            User              @relation(fields: [userId], references: [id]) // Belongs to one User
-  category        FoundItemCategory @relation(fields: [categoryId], references: [id]) // Belongs to one FoundItemCategory
-  claims          Claim[]           // One-to-Many with Claim
+  id            String            @id @default(uuid())
+  userId        String
+  categoryId    String
+  foundItemName String
+  description   String
+  location      String
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  user          User              @relation(fields: [userId], references: [id]) // Belongs to one User
+  category      FoundItemCategory @relation(fields: [categoryId], references: [id]) // Belongs to one FoundItemCategory
+  claims        Claim[] // One-to-Many with Claim
 
   @@index([userId])
   @@index([categoryId])
@@ -57,16 +57,16 @@ model FoundItem {
 }
 
 model Claim {
-  id                  String   @id @default(uuid())
-  userId              String
-  foundItemId         String
-  status              Status   @default(PENDING)
+  id                     String    @id @default(uuid())
+  userId                 String
+  foundItemId            String
+  status                 Status    @default(PENDING)
   distinguishingFeatures String
-  lostDate            DateTime
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-  user                User     @relation(fields: [userId], references: [id]) // Belongs to one User
-  foundItem           FoundItem @relation(fields: [foundItemId], references: [id]) // Belongs to one FoundItem
+  lostDate               DateTime
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+  user                   User      @relation(fields: [userId], references: [id]) // Belongs to one User
+  foundItem              FoundItem @relation(fields: [foundItemId], references: [id]) // Belongs to one FoundItem
 
   @@index([userId])
   @@index([foundItemId])
