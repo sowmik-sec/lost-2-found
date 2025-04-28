@@ -20,6 +20,7 @@ const login = async (payload: { email: string; password: string }) => {
     throw new ApiError(StatusCodes.UNAUTHORIZED, "Unauthorized");
   }
   const jwtPayload = {
+    userId: isUserExists.id,
     email: payload.email,
   };
   const accessToken = jwtHelpers.generateToken(
