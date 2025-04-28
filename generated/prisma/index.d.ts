@@ -7145,14 +7145,14 @@ export namespace Prisma {
 
   export type FoundItemCategoryWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    name?: string
     AND?: FoundItemCategoryWhereInput | FoundItemCategoryWhereInput[]
     OR?: FoundItemCategoryWhereInput[]
     NOT?: FoundItemCategoryWhereInput | FoundItemCategoryWhereInput[]
-    name?: StringFilter<"FoundItemCategory"> | string
     createdAt?: DateTimeFilter<"FoundItemCategory"> | Date | string
     updatedAt?: DateTimeFilter<"FoundItemCategory"> | Date | string
     foundItems?: FoundItemListRelationFilter
-  }, "id">
+  }, "id" | "name">
 
   export type FoundItemCategoryOrderByWithAggregationInput = {
     id?: SortOrder
