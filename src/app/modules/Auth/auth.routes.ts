@@ -11,5 +11,6 @@ router.post(
   AuthController.login
 );
 router.get("/my-profile", auth(), AuthController.getMyProfile);
+router.patch("/my-profile", auth(), AuthController.updateMyProfile);
 
 export const AuthRouters = router;
