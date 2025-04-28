@@ -2,6 +2,7 @@ import express from "express";
 import { UserRoutes } from "../modules/User/user.routes";
 import { AuthRouters } from "../modules/Auth/auth.routes";
 import { CategoryRoutes } from "../modules/FoundItemCategory/category.routes";
+import { FoundItemRoutes } from "../modules/FoundItem/foundItem.routes";
 const router = express.Router();
 
 const routes = [
@@ -16,6 +17,10 @@ const routes = [
   {
     path: "/categories",
     route: CategoryRoutes,
+  },
+  {
+    path: "/found-items",
+    route: FoundItemRoutes,
   },
 ];
 
