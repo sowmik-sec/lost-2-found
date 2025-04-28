@@ -3,6 +3,7 @@ import router from "./app/routes";
 export const app: Application = express();
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 
 app.use(cors());
 app.use(express.json());
@@ -14,3 +15,5 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/v1", router);
+
+app.use(globalErrorHandler);
