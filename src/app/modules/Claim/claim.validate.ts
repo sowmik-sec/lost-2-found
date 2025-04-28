@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { Status } from "../../../../generated/prisma";
 
 const createClaimZodValidation = z.object({
   body: z.object({
@@ -12,6 +13,13 @@ const createClaimZodValidation = z.object({
   }),
 });
 
+const updateClaimStatusZodValidation = z.object({
+  body: z.object({
+    status: z.enum([Status.PENDING, Status.APPROVED, Status.REJECTED]),
+  }),
+});
+
 export const ClaimValidations = {
   createClaimZodValidation,
+  updateClaimStatusZodValidation,
 };

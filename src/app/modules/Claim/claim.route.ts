@@ -11,6 +11,12 @@ router.post(
   validateRequest(ClaimValidations.createClaimZodValidation),
   ClaimController.createFoundItem
 );
+router.patch(
+  "/:claimId",
+  auth(),
+  validateRequest(ClaimValidations.updateClaimStatusZodValidation),
+  ClaimController.updateClaimStatus
+);
 
 router.get("/", auth(), ClaimController.getClaims);
 export const ClaimRouters = router;

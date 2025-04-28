@@ -67,7 +67,30 @@ const getClaimsFromDB = async () => {
   return result;
 };
 
+const updateClaimStatus = async (claimId: string, status: Status) => {
+  console.log(status);
+  const isClaimExists = await prisma.claim.findUnique({
+    where: {
+      id: claimId,
+    },
+  });
+  if (!isClaimExists) {
+    throw new ApiError(StatusCodes.NOT_FOUND, "Claim not found");
+  }
+  // console.log({ isClaimExists });
+  const updateClaim = await prisma.claim.update({
+    where: {
+      id: claimId,
+    },
+    data: {
+      status,
+    },
+  });
+  return updateClaim;
+};
+
 export const ClaimServices = {
   createClaimIntoDb,
   getClaimsFromDB,
+  updateClaimStatus,
 };
