@@ -12,4 +12,5 @@ router.post(
   ClaimController.createFoundItem
 );
 
+router.get("/", auth(), ClaimController.getClaims);
 export const ClaimRouters = router;

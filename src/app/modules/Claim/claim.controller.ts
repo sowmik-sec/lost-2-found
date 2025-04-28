@@ -16,6 +16,16 @@ const createFoundItem = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getClaims = catchAsync(async (req: Request, res: Response) => {
+  const result = await ClaimServices.getClaimsFromDB();
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Claim retrieved successfully",
+    data: result,
+  });
+});
 export const ClaimController = {
   createFoundItem,
+  getClaims,
 };

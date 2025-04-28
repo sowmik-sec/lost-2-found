@@ -24,7 +24,7 @@ const routes = [
     route: FoundItemRoutes,
   },
   {
-    path: "/claim",
+    path: "/claims",
     route: ClaimRouters,
   },
 ];

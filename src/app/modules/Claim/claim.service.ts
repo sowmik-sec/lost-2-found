@@ -30,6 +30,44 @@ const createClaimIntoDb = async (
   return result;
 };
 
+const getClaimsFromDB = async () => {
+  const result = await prisma.claim.findMany({
+    include: {
+      foundItem: {
+        select: {
+          id: true,
+          userId: true,
+          categoryId: true,
+          foundItemName: true,
+          description: true,
+          location: true,
+          createdAt: true,
+          updatedAt: true,
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+          },
+          category: {
+            select: {
+              id: true,
+              name: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+          },
+        },
+      },
+    },
+  });
+  return result;
+};
+
 export const ClaimServices = {
   createClaimIntoDb,
+  getClaimsFromDB,
 };
